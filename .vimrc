@@ -13,9 +13,10 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'moll/vim-node'
 Plugin 'mxw/vim-jsx'
-"Plugin 'kien/ctrlp.vim'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -70,13 +71,13 @@ set gdefault
 set encoding=utf-8 nobomb
 " Change mapleader
 let mapleader=","
-" set up s for easy saves
+" save quickly with leader-s
 noremap <Leader>s :update<CR>
-" set up n for easy no-highlight
+" no highlight quickly with leader-n
 noremap <Leader>n :noh<CR>
-" Actually do.... " Don’t add empty newlines at the end of files
-" set binary
-" set noeol
+" Don’t add empty newlines at the end of files
+set binary
+set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -101,17 +102,15 @@ syntax on
 let g:jsx_ext_required = 0
 " Highlight current line
 set cursorline
+"Disable GUI cursor in Macvim
+set guicursor=a:blinkon0
 hi CursorLine ctermbg=8
 "hi CursorLineNr ctermfg=3
-"gui cursor in macvim
-set guicursor=a:blinkon0
 " Make tabs as wide as four spaces
 set tabstop=4
 set softtabstop=0
-set noexpandtab
-set shiftwidth=4
-" don't soft-wrap text
-set nowrap
+set expandtab
+set shiftwidth=2
 " Show “invisible” characters
 set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_
 set list
@@ -122,7 +121,7 @@ set ignorecase
 " Highlight dynamically as pattern is typed
 set incsearch
 " Always show status line
-set laststatus=2
+set laststatus=1
 " Enable mouse in all modes
 set mouse=a
 " Use xterm2 mouse mode with support for -drag in tmux
@@ -148,10 +147,10 @@ if exists("&relativenumber")
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
-" set GUI scroll bars off, virtual tabs on, menu bar on
-set guioptions=mg
-" set line height
 set linespace=0
+" Set up grepping with Ag
+set grepprg=ag\ --vimgrep\ $*
+set grepformat=%f:%l:%c:%m
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
 	let save_cursor = getpos(".")
@@ -163,7 +162,6 @@ endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
-
 " Automatic commands
 if has("autocmd")
 	" Enable file type detection
