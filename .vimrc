@@ -75,6 +75,8 @@ let mapleader=","
 noremap <Leader>s :update<CR>
 " no highlight quickly with leader-n
 noremap <Leader>n :noh<CR>
+" swap backround colors quickly
+noremap <Leader>b :call ToggleColorschemeBackground()<CR>
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
@@ -158,6 +160,14 @@ function! StripWhitespace()
 	:%s/\s\+$//e
 	call setpos('.', save_cursor)
 	call setreg('/', old_query)
+endfunction
+" toggle color scheme
+function! ToggleColorschemeBackground()
+  if &background == 'light'
+    set background=dark
+  else
+    set background=light
+  endif
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
