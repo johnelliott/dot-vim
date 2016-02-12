@@ -10,13 +10,14 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-Plugin 'bling/vim-airline'
+"Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'moll/vim-node'
 Plugin 'mxw/vim-jsx'
+Plugin 'scrooloose/nerdtree'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -48,10 +49,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
+" Use the Tomorrow theme
+"set background=dark
+colorscheme Tomorrow
 
 " Make Vim more useful
 set nocompatible
@@ -76,10 +76,12 @@ noremap <Leader>s :update<CR>
 " no highlight quickly with leader-n
 noremap <Leader>n :noh<CR>
 " swap backround colors quickly
-noremap <Leader>b :call ToggleColorschemeBackground()<CR>
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
+"noremap <Leader>b :call ToggleColorschemeBackground()<CR>
+" set up t for easy tree view
+noremap <Leader>t :NERDTreeToggle<CR>
+" Actually do.... " Don’t add empty newlines at the end of files
+" set binary
+" set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -106,18 +108,18 @@ let g:jsx_ext_required = 0
 set cursorline
 "Disable GUI cursor in Macvim
 set guicursor=a:blinkon0
-hi CursorLine ctermbg=8
-"hi CursorLineNr ctermfg=3
 " Make tabs as wide as four spaces
 set tabstop=4
 set softtabstop=0
 set expandtab
-set shiftwidth=2
+set shiftwidth=4
+" don't add space when joining lines
+set nojoinspaces
 " Show “invisible” characters
 set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_
 set list
 " Highlight searches
-set hlsearch
+set nohlsearch
 " Ignore case of searches
 set ignorecase
 " Highlight dynamically as pattern is typed
@@ -143,12 +145,15 @@ set title
 " Show the (partial) command as it’s being typed
 set showcmd
 " Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
+"if exists("&relativenumber")
+"	set relativenumber
+"	au BufReadPost * set relativenumber
+"endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
+" set GUI scroll bars off, virtual tabs on, menu bar on
+set guioptions=mg
+" set line height
 set linespace=0
 " Set up grepping with Ag
 set grepprg=ag\ --vimgrep\ $*
