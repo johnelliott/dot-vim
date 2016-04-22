@@ -9,16 +9,22 @@ endtry
 let mapleader=","
 " save quickly with leader-s
 noremap <Leader>s :update<CR>
-" no highlight quickly with leader-n
-noremap <Leader>n :noh<CR>
 " set up t for easy tree view
 noremap <Leader>t :NERDTreeToggle<CR>
-
-" no highlight quickly with leader-n
-noremap <Leader>n :noh<CR>
+" use fuzzy file finder
+" FZF plugin config: https://github.com/junegunn/fzf.vim
+noremap <Leader>f :Files
+" Declare color schemes
+noremap <Leader>m :colorscheme Tomorrow<CR>
+noremap <Leader>b :colorscheme Tomorrow-Night-Bright<CR>
+noremap <Leader>n :colorscheme Tomorrow-Night<CR>
 
 " Ignore case of searches
 set ignorecase
+" Ignore case of files
+set fileignorecase
+" Ignore case of wild menu
+set wildignorecase
 " don't add space when joining lines
 set nojoinspaces
 " Add the g flag to search/replace by default
@@ -29,7 +35,7 @@ set nohlsearch
 " Always show status line
 set laststatus=1
 " Start scrolling three lines before the horizontal window border
-set scrolloff=3
+set scrolloff=2
 " Show the (partial) command as it’s being typed
 set showcmd
 " Don’t show the intro message when starting Vim
@@ -38,19 +44,14 @@ set shortmess=atI
 set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_
 
 " Configure tabs
-"set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=4
 set expandtab
+set softtabstop=2
+set shiftwidth=2
 
 if has("clipboard")
     set clipboard=unnamed
 endif
-
-" TODO
-" make searching case insensitive
-" Set up grepping with Ag
-
 
 " Plugins via vim-plug: https://github.com/junegunn/vim-plug
 call plug#begin()
@@ -65,11 +66,13 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 call plug#end()
 
+" Set up grepping with Ag
+set grepprg=ag\ --vimgrep\ $*
+set grepformat=%f:%l:%c:%m
+
 " Highlight .js as .jsx for vim-jsx plugin
 let g:jsx_ext_required = 0
 
-" FZF plugin config: https://github.com/junegunn/fzf.vim
-noremap <Leader>f :Files<CR>
 
 " never engage ex mode... sry
 " http://www.bestofvim.com/tip/leave-ex-mode-good/

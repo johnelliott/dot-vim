@@ -1,62 +1,16 @@
-" Vundle setup
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-"Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'moll/vim-node'
-Plugin 'mxw/vim-jsx'
-Plugin 'scrooloose/nerdtree'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" Use the Tomorrow theme
-"set background=dark
-colorscheme Tomorrow
+" Set colors
+try
+	colorscheme Tomorrow-Night-Bright
+catch
+	colorscheme default
+endtry
 
 " Make Vim more useful
 set nocompatible
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
+if has("clipboard")
+	set clipboard=unnamed
+endif
 " Enhance command-line completion
 set wildmenu
 " Allow cursor keys in insert mode
@@ -73,10 +27,6 @@ set encoding=utf-8 nobomb
 let mapleader=","
 " save quickly with leader-s
 noremap <Leader>s :update<CR>
-" no highlight quickly with leader-n
-noremap <Leader>n :noh<CR>
-" swap backround colors quickly
-"noremap <Leader>b :call ToggleColorschemeBackground()<CR>
 " set up t for easy tree view
 noremap <Leader>t :NERDTreeToggle<CR>
 " Actually do.... " Don’t add empty newlines at the end of files
@@ -98,21 +48,21 @@ set modelines=4
 " Enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
 set secure
-" Enable line numbers
-set number
+" Disable line numbers
+set nonumber
 " Enable syntax highlighting
 syntax on
 " Highlight .js as .jsx for vim-jsx plugin
 let g:jsx_ext_required = 0
-" Highlight current line
-set cursorline
-"Disable GUI cursor in Macvim
-set guicursor=a:blinkon0
-" Make tabs as wide as four spaces
+" Don't highlight current line
+set nocursorline
+
+" Configure tabs
 set tabstop=4
-set softtabstop=0
 set expandtab
-set shiftwidth=4
+set softtabstop=2
+set shiftwidth=2
+
 " don't add space when joining lines
 set nojoinspaces
 " Show “invisible” characters
@@ -127,7 +77,9 @@ set incsearch
 " Always show status line
 set laststatus=1
 " Enable mouse in all modes
-set mouse=a
+if has("mouse")
+    set mouse=a
+endif
 " Use xterm2 mouse mode with support for -drag in tmux
 set ttymouse=xterm2
 " Disable error bells
@@ -158,21 +110,34 @@ set linespace=0
 " Set up grepping with Ag
 set grepprg=ag\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
-" Strip trailing whitespace (,ss)
+" use US spelling
+if has("spell")
+    set spelllang=en_us
+    "nnoremap <leader>s :set spell!<CR>
+endif
+" never engage ex mode... sry
+" http://www.bestofvim.com/tip/leave-ex-mode-good/
+nnoremap Q <nop>" Strip trailing whitespace (,ss)
+
+" Plugins via vim-plug: https://github.com/junegunn/vim-plug
+call plug#begin()
+Plug 'airblade/vim-gitgutter'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+Plug 'pangloss/vim-javascript'
+Plug 'moll/vim-node'
+Plug 'mxw/vim-jsx'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'junegunn/fzf.vim'
+call plug#end()
+
 function! StripWhitespace()
 	let save_cursor = getpos(".")
 	let old_query = getreg('/')
 	:%s/\s\+$//e
 	call setpos('.', save_cursor)
 	call setreg('/', old_query)
-endfunction
-" toggle color scheme
-function! ToggleColorschemeBackground()
-  if &background == 'light'
-    set background=dark
-  else
-    set background=light
-  endif
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
@@ -186,3 +151,8 @@ if has("autocmd")
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 endif
+
+" Declare color schemes
+noremap <Leader>m :colorscheme Tomorrow<CR>
+noremap <Leader>b :colorscheme Tomorrow-Night-Bright<CR>
+noremap <Leader>n :colorscheme Tomorrow-Night<CR>
