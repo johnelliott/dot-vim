@@ -1,6 +1,6 @@
 " Set colors
 try
-    colorscheme Tomorrow-Night-Bright
+    colorscheme Tomorrow-Night
 catch
     colorscheme default
 endtry
@@ -9,11 +9,13 @@ endtry
 let mapleader=","
 " save quickly with leader-s
 noremap <Leader>s :update<CR>
+" read dates into buffer
+noremap <Leader>d :r!date<CR>
 " set up t for easy tree view
-noremap <Leader>t :NERDTreeToggle<CR>
+"noremap <Leader>t :NERDTreeToggle<CR>
 " use fuzzy file finder
 " FZF plugin config: https://github.com/junegunn/fzf.vim
-noremap <Leader>f :Files
+noremap <Leader>f :Files<CR>
 " Declare color schemes
 noremap <Leader>m :colorscheme Tomorrow<CR>
 noremap <Leader>b :colorscheme Tomorrow-Night-Bright<CR>
