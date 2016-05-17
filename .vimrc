@@ -27,6 +27,8 @@ set encoding=utf-8 nobomb
 let mapleader=","
 " save quickly with leader-s
 noremap <Leader>s :update<CR>
+" read dates into buffer
+noremap <Leader>d :r!date<CR>
 " set up t for easy tree view
 noremap <Leader>t :NERDTreeToggle<CR>
 " Actually do.... " Don’t add empty newlines at the end of files
@@ -102,7 +104,7 @@ set showcmd
 "	au BufReadPost * set relativenumber
 "endif
 " Start scrolling three lines before the horizontal window border
-set scrolloff=3
+set scrolloff=2
 " set GUI scroll bars off, virtual tabs on, menu bar on
 set guioptions=mg
 " set line height
@@ -120,7 +122,7 @@ endif
 nnoremap Q <nop>" Strip trailing whitespace (,ss)
 
 " Plugins via vim-plug: https://github.com/junegunn/vim-plug
-call plug#begin()
+silent! call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
@@ -130,7 +132,7 @@ Plug 'mxw/vim-jsx'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf.vim'
-call plug#end()
+silent! call plug#end()
 
 function! StripWhitespace()
 	let save_cursor = getpos(".")
@@ -141,7 +143,7 @@ function! StripWhitespace()
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
+"noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " Automatic commands
 if has("autocmd")
 	" Enable file type detection
