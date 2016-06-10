@@ -12,14 +12,23 @@ noremap <Leader>s :update<CR>
 " read dates into buffer
 noremap <Leader>d :r!date<CR>
 " set up t for easy tree view
-"noremap <Leader>t :NERDTreeToggle<CR>
+noremap <Leader>t :NERDTreeToggle<CR>
 " use fuzzy file finder
 " FZF plugin config: https://github.com/junegunn/fzf.vim
 noremap <Leader>f :Files<CR>
+" Toggle highlight searches
+nnoremap <leader>h :set hlsearch!<CR>
 " Declare color schemes
 noremap <Leader>m :colorscheme Tomorrow<CR>
 noremap <Leader>b :colorscheme Tomorrow-Night-Bright<CR>
 noremap <Leader>n :colorscheme Tomorrow-Night<CR>
+noremap <Leader>v :colorscheme Tomorrow-Night-Eighties<CR>
+" use US spelling
+if has("spell")
+    set spelllang=en_us
+    nnoremap <leader>p :set spell!<CR>
+endif
+
 
 " Ignore case of searches
 set ignorecase
@@ -59,7 +68,6 @@ endif
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
-"Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'

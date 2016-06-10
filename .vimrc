@@ -1,6 +1,6 @@
 " Set colors
 try
-	colorscheme Tomorrow-Night-Bright
+	colorscheme Tomorrow-Night
 catch
 	colorscheme default
 endtry
@@ -72,12 +72,14 @@ set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_
 set list
 " Highlight searches
 set nohlsearch
+" Toggle highlight searches
+nnoremap <leader>h :set hlsearch!<CR>
 " Ignore case of searches
 set ignorecase
 " Highlight dynamically as pattern is typed
 set incsearch
 " Always show status line
-set laststatus=1
+set laststatus=2
 " Enable mouse in all modes
 if has("mouse")
     set mouse=a
@@ -107,15 +109,13 @@ set showcmd
 set scrolloff=2
 " set GUI scroll bars off, virtual tabs on, menu bar on
 set guioptions=mg
-" set line height
-set linespace=0
-" Set up grepping with Ag
+" Set up grepping with Ag TODO make this check for ag presence first
 set grepprg=ag\ --vimgrep\ $*
 set grepformat=%f:%l:%c:%m
 " use US spelling
 if has("spell")
     set spelllang=en_us
-    "nnoremap <leader>s :set spell!<CR>
+    nnoremap <leader>p :set spell!<CR>
 endif
 " never engage ex mode... sry
 " http://www.bestofvim.com/tip/leave-ex-mode-good/
@@ -125,6 +125,8 @@ nnoremap Q <nop>" Strip trailing whitespace (,ss)
 silent! call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
@@ -133,6 +135,21 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 "Plug 'junegunn/fzf.vim'
 silent! call plug#end()
+
+" Airline.vim
+" the separator used on the left side >
+let g:airline_left_sep=' '
+" the separator used on the right side >
+let g:airline_right_sep=' '
+" Separators can be configured independently for the tabline, so here is how you can define "straight" tabs:
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+" Configure tabline for AirLine
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_min_count = 2
+
+let g:airline#extensions#tabline#show_buffers = 0
+"let g:airline#extensions#tabline#buffer_min_count = 2
 
 function! StripWhitespace()
 	let save_cursor = getpos(".")
@@ -158,3 +175,4 @@ endif
 noremap <Leader>m :colorscheme Tomorrow<CR>
 noremap <Leader>b :colorscheme Tomorrow-Night-Bright<CR>
 noremap <Leader>n :colorscheme Tomorrow-Night<CR>
+noremap <Leader>v :colorscheme Tomorrow-Night-Eighties<CR>
