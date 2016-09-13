@@ -1,6 +1,6 @@
 " Set colors
 try
-	colorscheme Tomorrow-Night
+	colorscheme Tomorrow-Night-Bright
 catch
 	colorscheme default
 endtry
@@ -31,6 +31,8 @@ noremap <Leader>s :update<CR>
 noremap <Leader>d :r!date<CR>
 " set up t for easy tree view
 noremap <Leader>t :NERDTreeToggle<CR>
+" set up f for easy nerd tree
+noremap <Leader>f :CtrlP<CR>
 " Actually do.... " Don’t add empty newlines at the end of files
 " set binary
 " set noeol
@@ -119,7 +121,10 @@ if has("spell")
 endif
 " never engage ex mode... sry
 " http://www.bestofvim.com/tip/leave-ex-mode-good/
-nnoremap Q <nop>" Strip trailing whitespace (,ss)
+nnoremap Q <nop>
+
+"Only syntax higlight some of long lines for performance with large files
+set synmaxcol=360
 
 " Plugins via vim-plug: https://github.com/junegunn/vim-plug
 silent! call plug#begin()
@@ -151,6 +156,10 @@ let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#show_buffers = 0
 "let g:airline#extensions#tabline#buffer_min_count = 2
 
+" start without git gutter
+let g:gitgutter_enabled = 0
+
+" Strip trailing whitespace (,ss)
 function! StripWhitespace()
 	let save_cursor = getpos(".")
 	let old_query = getreg('/')
