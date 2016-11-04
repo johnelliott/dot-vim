@@ -31,7 +31,8 @@ set nowrap
 let mapleader=","
 nnoremap Q <nop>
 noremap <Leader>s :update<CR>
-nnoremap <leader>h :set hlsearch!<CR>
+nnoremap <Leader>h :set hlsearch!<CR>
+nnoremap <Leader>l :set wrap! lbr!<CR>
 
 " read date into buffer
 noremap <Leader>d o<esc>:r!date<CR><esc>o<esc>
