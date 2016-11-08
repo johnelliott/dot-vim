@@ -9,7 +9,10 @@ set nostartofline " Don’t reset cursor to start of line when moving around.
 
 set gdefault " default global search with s/a/b/
 set wildmenu
-set wildignorecase " Ignore case of wild menu
+set wildignore " Ignore case of wild menu
+if exists("&wildignorecase")
+    set wildignorecase
+endif
 set ignorecase " Ignore case of searches
 
 set tabstop=4
