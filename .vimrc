@@ -115,3 +115,16 @@ if has('gui_macvim')
   noremap <Leader>t :NERDTreeToggle<CR>
   noremap <Leader>f :CtrlP<CR>
 endif
+
+" Colors
+try
+  colorscheme Tomorrow-Night
+  noremap <Leader>m :colorscheme Tomorrow<CR>
+  noremap <Leader>b :colorscheme Tomorrow-Night-Bright<CR>
+  noremap <Leader>n :colorscheme Tomorrow-Night<CR>
+  noremap <Leader>v :colorscheme Tomorrow-Night-Eighties<CR>
+  noremap <Leader>c :colorscheme Solarized<CR> :set background=light<CR>
+  noremap <Leader>x :colorscheme Solarized<CR> :set background=dark<CR>
+catch
+  colorscheme default
+endtry
