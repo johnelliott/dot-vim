@@ -30,10 +30,12 @@ set laststatus=2
 set scrolloff=2
 set nocursorline
 set incsearch " Highlight dynamically as pattern is typed
-set nohlsearch " Don't highlight matches
+set hlsearch " highlight search matches
 set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_ " Show “invisible” characters
 set list
 set nowrap
+set nu
+set rnu
 
 let mapleader=","
 nnoremap Q <nop>
@@ -42,7 +44,7 @@ nnoremap <leader>h :set hlsearch!<CR>
 
 if has("syntax")
   syntax on
-  set synmaxcol=360 "WQGA/WQXGA
+  set synmaxcol=300 "2k screen
 endif
 
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
