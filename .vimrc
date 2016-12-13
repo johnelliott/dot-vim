@@ -2,6 +2,7 @@ set nocompatible
 set ttyfast
 set encoding=utf-8 nobomb " Use UTF-8 without BOM
 
+set bo=error,esc
 set backspace=indent,eol,start " Allow backspace in insert mode
 set esckeys " Allow cursor keys in insert mode
 set nojoinspaces
@@ -30,7 +31,7 @@ set laststatus=2
 set scrolloff=2
 set nocursorline
 set incsearch " Highlight dynamically as pattern is typed
-set hlsearch " highlight search matches
+set hlsearch
 set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_ " Show “invisible” characters
 set list
 set nowrap
@@ -41,6 +42,10 @@ let mapleader=","
 nnoremap Q <nop>
 noremap <Leader>s :update<CR>
 nnoremap <leader>h :set hlsearch!<CR>
+nnoremap <Leader>l :set wrap! lbr!<CR>
+
+" read date into buffer
+noremap <Leader>d o<esc>:r!date<CR><esc>o<esc>
 
 if has("syntax")
   syntax on
