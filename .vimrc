@@ -1,43 +1,46 @@
+" basics
 set nocompatible
 set ttyfast
 set encoding=utf-8 nobomb " Use UTF-8 without BOM
+set modelines=0
 
-set bo=error,esc
+" mechanics
 set backspace=indent,eol,start " Allow backspace in insert mode
 set esckeys " Allow cursor keys in insert mode
 set nojoinspaces
-set nostartofline " Don’t reset cursor to start of line when moving around.
-set modelines=0
-
-set gdefault " default global search with s/a/b/
-set wildmenu
-set ignorecase " Ignore case of searches
-set wildignore+=.*
-
-if exists("&wildignorecase")
-    set wildignorecase
-endif
-
+set splitbelow
+set splitright
 set tabstop=4
 set expandtab
 set softtabstop=2
 set shiftwidth=2
 
+" searches
+set gdefault " default global search with s/a/b/
+set wildmenu
+set ignorecase " Ignore case of searches
+set wildignore+=.*
+if exists("&wildignorecase")
+  set wildignorecase
+endif
+
+" feedback
 set shortmess=atI
+set belloff=error,esc
+set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_ " Show “invisible” characters
+set scrolloff=5
+set nocursorline
 set showmode
 set showcmd
 set ruler
 set title
-set laststatus=2
-set scrolloff=2
-set nocursorline
+set laststatus=1
 set incsearch " Highlight dynamically as pattern is typed
-set hlsearch
-set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_ " Show “invisible” characters
+set nohlsearch
 set list
 set nowrap
-set nu
-set rnu
+set number
+set relativenumber
 
 let mapleader=","
 nnoremap Q <nop>
@@ -69,8 +72,8 @@ if has("autocmd")
 endif
 
 if has("spell")
-    set spelllang=en_us
-    nnoremap <leader>p :set spell!<CR>
+  set spelllang=en_us
+  nnoremap <leader>p :set spell!<CR>
 endif
 
 " Centralize backups, swapfiles and undo history
@@ -90,7 +93,7 @@ endif
 
 " Colors
 try
-  colorscheme Tomorrow-Night
+  colorscheme default
   noremap <Leader>m :colorscheme Tomorrow<CR>
   noremap <Leader>b :colorscheme Tomorrow-Night-Bright<CR>
   noremap <Leader>n :colorscheme Tomorrow-Night<CR>
@@ -104,8 +107,8 @@ endtry
 " Plugins via vim-plug: https://github.com/junegunn/vim-plug
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
@@ -126,13 +129,13 @@ let g:gitgutter_enabled = 0
 let g:jsx_ext_required = 0
 
 " Airline.vim
-let g:airline_left_sep=' '
-let g:airline_right_sep=' '
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_min_count = 2
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#buffer_min_count = 2
+"let g:airline_left_sep=' '
+"let g:airline_right_sep=' '
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#tab_min_count = 2
+"let g:airline#extensions#tabline#show_buffers = 0
+"let g:airline#extensions#tabline#buffer_min_count = 2
 
-  noremap <Leader>t :NERDTreeToggle<CR>
+noremap <Leader>t :NERDTreeToggle<CR>
