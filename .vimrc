@@ -113,6 +113,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
+Plug 'cakebaker/scss-syntax.vim'
 if has('gui_macvim')
   Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
