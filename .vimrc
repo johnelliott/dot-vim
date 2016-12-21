@@ -3,6 +3,9 @@ set nocompatible
 set ttyfast
 set encoding=utf-8 nobomb " Use UTF-8 without BOM
 set modelines=0
+set nobackup
+set noswapfile
+set nowritebackup
 
 " mechanics
 set backspace=indent,eol,start " Allow backspace in insert mode
@@ -76,9 +79,6 @@ if has("spell")
   nnoremap <leader>p :set spell!<CR>
 endif
 
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 if exists("&undodir")
@@ -91,19 +91,6 @@ if has("mouse")
   set ttymouse=xterm2
 endif
 
-" Colors
-try
-  colorscheme default
-  noremap <Leader>m :colorscheme Tomorrow<CR>
-  noremap <Leader>b :colorscheme Tomorrow-Night-Bright<CR>
-  noremap <Leader>n :colorscheme Tomorrow-Night<CR>
-  noremap <Leader>v :colorscheme Tomorrow-Night-Eighties<CR>
-  noremap <Leader>c :colorscheme Solarized<CR> :set background=light<CR>
-  noremap <Leader>x :colorscheme Solarized<CR> :set background=dark<CR>
-catch
-  colorscheme default
-endtry
-
 " Plugins via vim-plug: https://github.com/junegunn/vim-plug
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
@@ -114,6 +101,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'chriskempson/base16-vim'
 if has('gui_macvim')
   Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -138,5 +126,21 @@ let g:jsx_ext_required = 0
 "let g:airline#extensions#tabline#tab_min_count = 2
 "let g:airline#extensions#tabline#show_buffers = 0
 "let g:airline#extensions#tabline#buffer_min_count = 2
+
+noremap <Leader>t :NERDTreeToggle<CR>
+
+" Colors
+try
+  colorscheme base16-default-dark
+  set tgc
+catch
+  colorscheme default
+endtry
+noremap <Leader>m :set notgc<CR> :colorscheme Tomorrow<CR>
+noremap <Leader>n :set notgc<CR> :colorscheme Tomorrow-Night<CR>
+noremap <Leader>b :set notgc<CR> :colorscheme Tomorrow-Night-Bright<CR>
+noremap <Leader>v :set notgc<CR> :colorscheme Tomorrow-Night-Eighties<CR>
+noremap <Leader>c :set tgc<CR> :colorscheme base16-default-dark<CR>
+noremap <Leader>x :set tgc<CR> :colorscheme default<CR>
 
 noremap <Leader>t :NERDTreeToggle<CR>
