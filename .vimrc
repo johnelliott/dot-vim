@@ -131,8 +131,8 @@ noremap <Leader>t :NERDTreeToggle<CR>
 
 " Colors
 try
-  colorscheme base16-default-dark
   set tgc
+  colorscheme base16-default-dark
 catch
   colorscheme default
 endtry
