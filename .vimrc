@@ -11,8 +11,6 @@ set nowritebackup
 set backspace=indent,eol,start " Allow backspace in insert mode
 set esckeys " Allow cursor keys in insert mode
 set nojoinspaces
-set splitbelow
-set splitright
 set tabstop=4
 set expandtab
 set softtabstop=2
@@ -50,7 +48,7 @@ nnoremap Q <nop>
 noremap <Leader>s :update<CR>
 nnoremap <leader>h :set hlsearch!<CR>
 nnoremap <Leader>l :set wrap! lbr!<CR>
-
+nnoremap <Leader>r :set number! relativenumber!<CR>
 " read date into buffer
 noremap <Leader>d o<esc>:r!date<CR><esc>o<esc>
 
@@ -142,5 +140,3 @@ noremap <Leader>b :set notgc<CR> :colorscheme Tomorrow-Night-Bright<CR>
 noremap <Leader>v :set notgc<CR> :colorscheme Tomorrow-Night-Eighties<CR>
 noremap <Leader>c :set tgc<CR> :colorscheme base16-default-dark<CR>
 noremap <Leader>x :set tgc<CR> :colorscheme default<CR>
-
-noremap <Leader>t :NERDTreeToggle<CR>
