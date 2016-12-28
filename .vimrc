@@ -100,6 +100,7 @@ Plug 'moll/vim-node'
 Plug 'mxw/vim-jsx'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'chriskempson/base16-vim'
+Plug 'vim-syntastic/syntastic'
 if has('gui_macvim')
   Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -110,7 +111,7 @@ else
 endif
 call plug#end()
 
-let g:gitgutter_enabled = 0
+"let g:gitgutter_enabled = 0
 
 " Highlight .js as .jsx
 let g:jsx_ext_required = 0
@@ -127,12 +128,35 @@ let g:jsx_ext_required = 0
 
 noremap <Leader>t :NERDTreeToggle<CR>
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
 " Colors
 try
   set tgc
   colorscheme base16-default-dark
 catch
   colorscheme default
+  set cursorline
 endtry
 noremap <Leader>m :set notgc<CR> :colorscheme Tomorrow<CR>
 noremap <Leader>n :set notgc<CR> :colorscheme Tomorrow-Night<CR>
