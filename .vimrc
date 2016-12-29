@@ -90,7 +90,7 @@ if has("mouse")
 endif
 
 " Plugins via vim-plug: https://github.com/junegunn/vim-plug
-call plug#begin()
+silent! call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'pangloss/vim-javascript'
@@ -109,7 +109,7 @@ else
   Plug 'junegunn/fzf.vim'
   noremap <Leader>f :FZF<CR>
 endif
-call plug#end()
+silent! call plug#end()
 
 let g:gitgutter_enabled = 0
 
@@ -134,6 +134,13 @@ highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-" Colors
-silent! set tgc
-silent! colorscheme base16-default-dark
+" let vim v7.4 use default colorscheme
+if has('termguicolors')
+  try
+    set termguicolors
+    colorscheme base16-default-dark
+  endtry
+endif
+if has('gui_macvim')
+  silent! colorscheme base16-default-dark
+endif
