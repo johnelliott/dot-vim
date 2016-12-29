@@ -92,8 +92,6 @@ endif
 " Plugins via vim-plug: https://github.com/junegunn/vim-plug
 call plug#begin()
 Plug 'airblade/vim-gitgutter'
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'moll/vim-node'
@@ -103,7 +101,9 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-syntastic/syntastic'
 if has('gui_macvim')
   Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+  noremap <Leader>f :CtrlP<CR>
   Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+  noremap <Leader>t :NERDTreeToggle<CR>
 else
   Plug 'junegunn/fzf',
   Plug 'junegunn/fzf.vim'
@@ -111,26 +111,10 @@ else
 endif
 call plug#end()
 
-"let g:gitgutter_enabled = 0
+let g:gitgutter_enabled = 0
 
 " Highlight .js as .jsx
 let g:jsx_ext_required = 0
-
-" Airline.vim
-"let g:airline_left_sep=' '
-"let g:airline_right_sep=' '
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '|'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#tab_min_count = 2
-"let g:airline#extensions#tabline#show_buffers = 0
-"let g:airline#extensions#tabline#buffer_min_count = 2
-
-noremap <Leader>t :NERDTreeToggle<CR>
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_loc_list_height = 5
@@ -151,16 +135,5 @@ highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
 " Colors
-try
-  set tgc
-  colorscheme base16-default-dark
-catch
-  colorscheme default
-  set cursorline
-endtry
-noremap <Leader>m :set notgc<CR> :colorscheme Tomorrow<CR>
-noremap <Leader>n :set notgc<CR> :colorscheme Tomorrow-Night<CR>
-noremap <Leader>b :set notgc<CR> :colorscheme Tomorrow-Night-Bright<CR>
-noremap <Leader>v :set notgc<CR> :colorscheme Tomorrow-Night-Eighties<CR>
-noremap <Leader>c :set tgc<CR> :colorscheme base16-default-dark<CR>
-noremap <Leader>x :set tgc<CR> :colorscheme default<CR>
+silent! set tgc
+silent! colorscheme base16-default-dark
