@@ -1,2 +1,2 @@
 # dot-vim
-my personal vim config
+my [.vimrc](https://raw.githubusercontent.com/johnelliott/dotvim/master/.vimrc)
