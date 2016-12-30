@@ -93,12 +93,12 @@ endif
 silent! call plug#begin()
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'moll/vim-node'
-Plug 'mxw/vim-jsx'
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'scss.css'] }
 Plug 'chriskempson/base16-vim'
-Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic', { 'for': ['javascript', 'javascript.jsx', 'jsx'] }
 if has('gui_macvim')
   Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
   noremap <Leader>f :CtrlP<CR>
