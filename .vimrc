@@ -27,7 +27,9 @@ endif
 
 " feedback
 set shortmess=atI
-set belloff=error,esc
+if has('belloff')
+  silent! set belloff=error,esc
+endif
 set lcs=tab:»\ ,trail:·,eol:¬,nbsp:_ " Show “invisible” characters
 set scrolloff=5
 set nocursorline
