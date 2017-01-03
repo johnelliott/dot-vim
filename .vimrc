@@ -113,7 +113,7 @@ else
 endif
 silent! call plug#end()
 
-let g:gitgutter_enabled = 0
+let g:gitgutter_enabled = 1
 
 " Highlight .js as .jsx
 let g:jsx_ext_required = 0
@@ -124,6 +124,8 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
+" Be sure to have eslint installed globally even when `npm bin` returns local
+" path
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
 
 let g:syntastic_error_symbol = '❌'
