@@ -1,6 +1,6 @@
 set guifont=Menlo:h13
 set linespace=0
-set guioptions=mge
+set guioptions=mg
 
 " macvim window size
 set lines=44

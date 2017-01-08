@@ -37,7 +37,7 @@ set showmode
 set showcmd
 set ruler
 set title
-set laststatus=1
+set laststatus=2
 set incsearch " Highlight dynamically as pattern is typed
 set nohlsearch
 set list
@@ -101,15 +101,15 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'scss.css'] }
 Plug 'chriskempson/base16-vim'
 Plug 'vim-syntastic/syntastic', { 'for': ['javascript', 'javascript.jsx', 'jsx'] }
-if has('gui_macvim')
-  Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
-  noremap <Leader>f :CtrlP<CR>
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  noremap <Leader>t :NERDTreeToggle<CR>
-else
-  Plug 'junegunn/fzf',
-  Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+noremap <Leader>t :NERDTreeToggle<CR>
+if has('unix')
+  Plug 'junegunn/fzf', { 'on': 'FZF' }
+  Plug 'junegunn/fzf.vim', { 'on': 'FZF' }
   noremap <Leader>f :FZF<CR>
+else
+  noremap <Leader>f :CtrlP<CR>
 endif
 silent! call plug#end()
 
@@ -127,12 +127,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 " Be sure to have eslint installed globally even when `npm bin` returns local
 " path
 let g:syntastic_javascript_eslint_exe = '$(npm bin)/eslint'
-
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
-
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
@@ -148,3 +146,7 @@ endif
 if has('gui_macvim')
   silent! colorscheme base16-default-dark
 endif
+noremap <Leader>m :colorscheme base16-default-dark<CR>
+noremap <Leader>n :colorscheme base16-default-light<CR>
+noremap <Leader>b :colorscheme base16-solar-flare<CR>
+noremap <Leader>v :colorscheme base16-darktooth<CR>
