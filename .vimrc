@@ -54,8 +54,8 @@ nnoremap <Leader>r :set number! relativenumber!<CR>
 " read date into buffer
 nnoremap <Leader>d o<esc>:r!date<CR><esc>o<esc>
 "vimrc helpers
-nnoremap <Leader>ev :e ~/.vimrc<CR>
-nnoremap <Leader>ov :source ~/.vimrc<CR>
+nnoremap <Leader>ev :vs ~/.vimrc<CR>
+nnoremap <Leader>! :source ~/.vimrc<CR>
 
 if has("syntax")
   syntax on
@@ -147,9 +147,10 @@ if has('termguicolors')
   endtry
 endif
 if has('gui_macvim')
-  silent! colorscheme base16-default-dark
+  silent! colorscheme base16-solar-flare
 endif
-noremap <Leader>m :colorscheme base16-default-dark<CR>
-noremap <Leader>n :colorscheme base16-default-light<CR>
-noremap <Leader>b :colorscheme base16-solar-flare<CR>
-noremap <Leader>v :colorscheme base16-darktooth<CR>
+noremap <Leader>c :colo base16-darktooth<CR>
+noremap <Leader>v :colo base16-solar-flare<CR>
+noremap <Leader>b :colo base16-bright<CR>
+noremap <Leader>n :colo base16-google-light<CR>
+noremap <Leader>m :colo base16-default-dark<CR>
