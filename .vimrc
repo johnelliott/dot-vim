@@ -52,7 +52,10 @@ nnoremap <leader>h :set hlsearch!<CR>
 nnoremap <Leader>l :set wrap! lbr!<CR>
 nnoremap <Leader>r :set number! relativenumber!<CR>
 " read date into buffer
-noremap <Leader>d o<esc>:r!date<CR><esc>o<esc>
+nnoremap <Leader>d o<esc>:r!date<CR><esc>o<esc>
+"vimrc helpers
+nnoremap <Leader>ev :e ~/.vimrc<CR>
+nnoremap <Leader>ov :source ~/.vimrc<CR>
 
 if has("syntax")
   syntax on
