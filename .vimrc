@@ -106,15 +106,15 @@ Plug 'chriskempson/base16-vim'
 Plug 'vim-syntastic/syntastic', { 'for': ['javascript', 'javascript.jsx', 'jsx'] }
 Plug 'ctrlpvim/ctrlp.vim', { 'on': 'CtrlP' }
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-noremap <Leader>t :NERDTreeToggle<CR>
-if has('unix')
-  Plug 'junegunn/fzf', { 'on': 'FZF' }
-  Plug 'junegunn/fzf.vim', { 'on': 'FZF' }
-  noremap <Leader>f :FZF<CR>
-else
-  noremap <Leader>f :CtrlP<CR>
-endif
+Plug 'junegunn/fzf', { 'on': 'FZF' }
+Plug 'junegunn/fzf.vim', { 'on': 'FZF' }
 silent! call plug#end()
+noremap <Leader>t :NERDTreeToggle<CR>
+if has('gui_macvim')
+  noremap <Leader>f :CtrlP<CR>
+else
+  noremap <Leader>f :FZF<CR>
+endif
 
 let g:gitgutter_enabled = 1
 
